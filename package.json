@@ -4,14 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "NEXT_TELEMETRY_DISABLED=1 next build && rm -rf dist && cp -R out dist",
-    "dev": "next dev --hostname 127.0.0.1",
-    "start": "next start --hostname 127.0.0.1",
+    "build": "node scripts/build-site.mjs",
     "test": "make test"
-  },
-  "dependencies": {
-    "next": "^16.3.0-canary.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
   }
 }
