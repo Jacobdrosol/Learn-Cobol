@@ -1,4 +1,4 @@
-# COBOL Practice and Mainframe Mastery Track
+# Learn-Cobol
 
 This repository is an offline-first learning workspace for COBOL, z/OS-style
 batch development, and the mainframe application ecosystem. It includes:

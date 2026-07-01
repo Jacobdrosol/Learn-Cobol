@@ -15,7 +15,7 @@ fi
 export COBOL_PRACTICE_ROOT="$ROOT_DIR"
 export COBOL_PRACTICE_COBC="$ROOT_DIR/scripts/cobc-local"
 
-printf 'COBOL practice environment ready at %s\n' "$ROOT_DIR"
+printf 'Learn-Cobol environment ready at %s\n' "$ROOT_DIR"
 if command -v cobc >/dev/null 2>&1; then
   cobc -V | sed -n '1p'
 else
