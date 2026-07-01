@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build && rm -rf dist && cp -R out dist",
     "dev": "next dev --hostname 127.0.0.1",
     "start": "next start --hostname 127.0.0.1",
     "test": "make test"
