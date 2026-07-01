@@ -2,7 +2,15 @@
 # Source this file from the repository root or any subdirectory:
 #   source scripts/env.sh
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [ -n "${BASH_VERSION:-}" ]; then
+  SCRIPT_PATH="${BASH_SOURCE[0]}"
+elif [ -n "${ZSH_VERSION:-}" ]; then
+  SCRIPT_PATH="${(%):-%x}"
+else
+  SCRIPT_PATH="$0"
+fi
+
+ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 LOCAL_TOOLCHAIN="$ROOT_DIR/tools/gnucobol"
 
 if [ -x "$LOCAL_TOOLCHAIN/usr/bin/cobc" ]; then
@@ -12,8 +20,10 @@ if [ -x "$LOCAL_TOOLCHAIN/usr/bin/cobc" ]; then
   export COB_COPY_DIR="$LOCAL_TOOLCHAIN/usr/share/gnucobol/copy"
 fi
 
-export COBOL_PRACTICE_ROOT="$ROOT_DIR"
-export COBOL_PRACTICE_COBC="$ROOT_DIR/scripts/cobc-local"
+export LEARN_COBOL_ROOT="$ROOT_DIR"
+export LEARN_COBOL_COBC="$ROOT_DIR/scripts/cobc-local"
+export COBOL_PRACTICE_ROOT="$LEARN_COBOL_ROOT"
+export COBOL_PRACTICE_COBC="$LEARN_COBOL_COBC"
 
 printf 'Learn-Cobol environment ready at %s\n' "$ROOT_DIR"
 if command -v cobc >/dev/null 2>&1; then

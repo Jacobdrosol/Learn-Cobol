@@ -4,6 +4,7 @@ out/
 node_modules/
 .vite/
 .next/
+.vinext/
 *.o
 *.so
 *.dll
