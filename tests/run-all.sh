@@ -5,6 +5,11 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ACTUAL_DIR="$ROOT_DIR/build/test-output"
 mkdir -p "$ACTUAL_DIR"
 
+LOCAL_LIB_DIR="$ROOT_DIR/tools/gnucobol/usr/lib/x86_64-linux-gnu"
+if [ -d "$LOCAL_LIB_DIR" ]; then
+  export LD_LIBRARY_PATH="$LOCAL_LIB_DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+fi
+
 run_and_diff() {
   local name="$1"
   local command="$2"

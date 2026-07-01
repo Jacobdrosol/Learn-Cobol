@@ -13,6 +13,7 @@ if [ -x "$LOCAL_TOOLCHAIN/usr/bin/cobc" ]; then
     -A "-I$LOCAL_TOOLCHAIN/usr/include" \
     -A "-I$LOCAL_TOOLCHAIN/usr/include/x86_64-linux-gnu" \
     -Q "-L$LOCAL_TOOLCHAIN/usr/lib/x86_64-linux-gnu" \
+    -Q "-Wl,-rpath,\$ORIGIN/../tools/gnucobol/usr/lib/x86_64-linux-gnu" \
     -Q "-Wl,-rpath,$LOCAL_TOOLCHAIN/usr/lib/x86_64-linux-gnu" \
     "$@"
 fi
