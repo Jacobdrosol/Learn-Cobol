@@ -329,7 +329,8 @@ export default {
 `;
 
 await rm('dist', { recursive: true, force: true });
-await mkdir('dist', { recursive: true });
+await mkdir('dist/server', { recursive: true });
 await writeFile('dist/index.js', worker);
+await writeFile('dist/server/index.js', worker);
 await writeFile('dist/index.html', html);
-console.log('Built Learn-Cobol site to dist/index.js and dist/index.html');
+console.log('Built Learn-Cobol site to dist/server/index.js, dist/index.js, and dist/index.html');
