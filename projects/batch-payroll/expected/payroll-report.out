@@ -1,0 +1,9 @@
+PAYROLL REPORT
+ID     NAME                   DEPT GROSS          NET
+E00001 ALICE NGUYEN           FIN      $2,500.00      $2,000.00
+E00002 BRIAN SMITH            OPS      $1,203.13        $962.50
+E00003 CARMEN DIAZ            IT       $2,132.00      $1,705.60
+E00004 DEVON PATEL            IT       $1,950.00      $1,560.00
+TOTAL GROSS:      $7,785.13
+TOTAL NET:        $6,228.10
+EMPLOYEES: 004

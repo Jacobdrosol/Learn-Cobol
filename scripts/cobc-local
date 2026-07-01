@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+LOCAL_TOOLCHAIN="$ROOT_DIR/tools/gnucobol"
+
+if [ -x "$LOCAL_TOOLCHAIN/usr/bin/cobc" ]; then
+  export PATH="$LOCAL_TOOLCHAIN/usr/bin:$PATH"
+  export LD_LIBRARY_PATH="$LOCAL_TOOLCHAIN/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  export COB_CONFIG_DIR="$LOCAL_TOOLCHAIN/etc/gnucobol"
+  export COB_COPY_DIR="$LOCAL_TOOLCHAIN/usr/share/gnucobol/copy"
+  exec "$LOCAL_TOOLCHAIN/usr/bin/cobc" \
+    -A "-I$LOCAL_TOOLCHAIN/usr/include" \
+    -A "-I$LOCAL_TOOLCHAIN/usr/include/x86_64-linux-gnu" \
+    -Q "-L$LOCAL_TOOLCHAIN/usr/lib/x86_64-linux-gnu" \
+    -Q "-Wl,-rpath,$LOCAL_TOOLCHAIN/usr/lib/x86_64-linux-gnu" \
+    "$@"
+fi
+
+if command -v cobc >/dev/null 2>&1; then
+  exec cobc "$@"
+fi
+
+cat >&2 <<'EOF'
+GnuCOBOL was not found.
+
+If you are online on Ubuntu, run:
+  scripts/bootstrap-gnucobol.sh
+
+If you prefer a system install, install GnuCOBOL and rerun make:
+  sudo apt-get install gnucobol
+EOF
+exit 127

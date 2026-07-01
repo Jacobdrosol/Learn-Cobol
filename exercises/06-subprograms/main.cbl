@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. TAXDEMO.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-AMOUNT             PIC 9(07)V99 VALUE 002500.00.
+       01  WS-RATE               PIC V999 VALUE .082.
+       01  WS-TAX                PIC 9(07)V99 VALUE ZERO.
+       01  WS-MONEY              PIC $$$,$$9.99.
+
+       PROCEDURE DIVISION.
+           CALL "TAXCALC" USING WS-AMOUNT WS-RATE WS-TAX.
+           MOVE WS-AMOUNT TO WS-MONEY.
+           DISPLAY "AMOUNT: " WS-MONEY.
+           MOVE WS-TAX TO WS-MONEY.
+           DISPLAY "TAX: " WS-MONEY.
+           GOBACK.

@@ -1,0 +1,20 @@
+build/
+*.o
+*.so
+*.dll
+*.exe
+*.lst
+*.c
+*.c.h
+*.idy
+*.int
+*.gnt
+*.tmp
+*.log
+
+# Local offline toolchain and proprietary/vendor reference downloads.
+# These are useful on this machine, but they should not be pushed to a
+# public repository without reviewing licensing and size.
+tools/gnucobol/
+tools/packages/*.deb
+offline-vendor/

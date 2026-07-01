@@ -1,0 +1,59 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. CUSTOMER-REPORT.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT CUSTOMER-FILE ASSIGN TO "exercises/05-files/customers.dat"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS IS WS-FILE-STATUS.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  CUSTOMER-FILE.
+       01  CUSTOMER-LINE            PIC X(120).
+
+       WORKING-STORAGE SECTION.
+       01  WS-FILE-STATUS          PIC XX VALUE SPACES.
+       01  WS-EOF                  PIC X VALUE "N".
+       01  WS-CUSTOMER-ID          PIC X(06).
+       01  WS-CUSTOMER-NAME        PIC X(24).
+       01  WS-BALANCE-TEXT         PIC X(16).
+       01  WS-BALANCE              PIC 9(07)V99 VALUE ZERO.
+       01  WS-TOTAL-BALANCE        PIC 9(09)V99 VALUE ZERO.
+       01  WS-COUNT                PIC 9(03) VALUE ZERO.
+       01  WS-MONEY                PIC $$$,$$$,$$9.99.
+
+       PROCEDURE DIVISION.
+           OPEN INPUT CUSTOMER-FILE.
+           IF WS-FILE-STATUS NOT = "00"
+               DISPLAY "ERROR OPENING CUSTOMERS: " WS-FILE-STATUS
+               GOBACK
+           END-IF.
+
+           DISPLAY "CUSTOMER BALANCE REPORT".
+           PERFORM UNTIL WS-EOF = "Y"
+               READ CUSTOMER-FILE
+                   AT END
+                       MOVE "Y" TO WS-EOF
+                   NOT AT END
+                       PERFORM PROCESS-CUSTOMER
+               END-READ
+           END-PERFORM.
+           CLOSE CUSTOMER-FILE.
+
+           MOVE WS-TOTAL-BALANCE TO WS-MONEY.
+           DISPLAY "CUSTOMERS: " WS-COUNT.
+           DISPLAY "TOTAL BALANCE: " WS-MONEY.
+           GOBACK.
+
+       PROCESS-CUSTOMER.
+           MOVE SPACES TO WS-CUSTOMER-ID WS-CUSTOMER-NAME WS-BALANCE-TEXT.
+           UNSTRING CUSTOMER-LINE DELIMITED BY ","
+               INTO WS-CUSTOMER-ID WS-CUSTOMER-NAME WS-BALANCE-TEXT
+           END-UNSTRING.
+           COMPUTE WS-BALANCE = FUNCTION NUMVAL(WS-BALANCE-TEXT).
+           ADD 1 TO WS-COUNT.
+           ADD WS-BALANCE TO WS-TOTAL-BALANCE.
+           MOVE WS-BALANCE TO WS-MONEY.
+           DISPLAY WS-CUSTOMER-ID " " WS-CUSTOMER-NAME " " WS-MONEY.
