@@ -2,6 +2,7 @@ build/
 dist/
 node_modules/
 .vite/
+.next/
 *.o
 *.so
 *.dll
