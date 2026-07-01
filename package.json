@@ -4,7 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-site.mjs",
+    "build": "vinext build && cp dist/server/entry.js dist/server/index.js && cp dist/server/entry.js dist/index.js",
+    "dev": "vinext dev -H 127.0.0.1",
+    "start": "vinext start",
     "test": "make test"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "vinext": "^0.2.0",
+    "vite": "^8.1.2"
   }
 }
