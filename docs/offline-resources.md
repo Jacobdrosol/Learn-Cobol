@@ -37,7 +37,7 @@ Optional downloaded IBM PDFs:
 
 ## Online Courses To Complete Later
 
-Preferred non-Coursera path:
+Preferred path:
 
 1. IBM Z Xplore
    - free challenge-based IBM Z learning

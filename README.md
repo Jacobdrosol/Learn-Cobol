@@ -20,6 +20,28 @@ make test
 
 If the tests pass, the repo is ready for offline work.
 
+## Offline Browser View
+
+The simplest offline browser page is `docs/index.html`. Open it directly from
+your file browser, or run a tiny local server:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/docs/
+```
+
+The richer React site can also run locally while offline because `node_modules/`
+is installed on this workstation:
+
+```bash
+npm run dev
+```
+
 ## How To Use This Repo
 
 1. Read `COURSE.md`.
@@ -105,5 +127,3 @@ Checked on 2026-07-01:
   https://www.ibm.com/products/zos
 - Zowe: open-source framework and tooling for z/OS.
   https://www.zowe.org/
-
-Coursera is deliberately not used in this path.

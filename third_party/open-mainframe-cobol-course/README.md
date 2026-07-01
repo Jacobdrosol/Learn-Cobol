@@ -42,6 +42,5 @@ The course materials were made available through a joint collaboration between I
 ## Video Course Links
 
 - [IBM Digital Learning Platform](https://learn.ibm.com/course/view.php?id=7552)
-- [Coursera](https://www.coursera.org/learn/cobol-programming-vscode?)
 - [Pluralsight](https://www.pluralsight.com/courses/learning-cobol-programming-vscode)
 - [YouTube](https://www.youtube.com/watch?v=RdMAEdGvtLA)
